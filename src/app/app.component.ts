@@ -16,6 +16,9 @@ export class AppComponent {
   },{
     name: 'IPhone X',
     price: 1000000
+  },{
+    name: 'SamSung S10',
+    price: 1000000
   },];
   title = 'demo-angular-create-component';
 }
