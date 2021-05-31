@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Product} from '../model/product';
 
 @Component({
   selector: 'app-product-list',
@@ -6,7 +7,8 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  className: string = 'C1220G1';
+  @Input()
+  listProduct: Product[] = [];
 
   constructor() {
   }

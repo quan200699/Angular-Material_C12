@@ -1,4 +1,13 @@
-<h1>Hello {{className}}</h1>
-
-<input type="text" [(ngModel)]="className" name="className">
-
+<table>
+  <tr>
+    <td>Name</td>
+    <td>Price</td>
+    <td>Description</td>
+  </tr>
+  <tr *ngFor="let product of listProduct">
+    <td>{{product.name}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.description}}</td>
+  </tr>
+</table>
+<app-product-create></app-product-create>
