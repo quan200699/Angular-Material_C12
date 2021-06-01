@@ -1,15 +1,20 @@
 <app-product-search (searchEvent)="search($event)" (keyup)="getAllProduct()"></app-product-search>
 <table>
   <tr>
+    <td>#</td>
     <td>Name</td>
     <td>Price</td>
     <td>Description</td>
+    <td>Edit</td>
   </tr>
-  <tr *ngFor="let product of listProduct">
+  <tr *ngFor="let product of listProduct; index as i">
+    <td>{{i+1}}</td>
     <td>{{product.name}}</td>
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
+    <td><button mat-raised-button color="primary" (click)="showEditForm(i)">Edit</button></td>
   </tr>
 </table>
 <button mat-raised-button (click)="changeStatus()">Show Create Form</button>
 <app-product-create *ngIf="status" (productSubmit)="addProductToList($event)"></app-product-create>
+<app-product-edit *ngIf="statusForEditForm" [product]="productEdit"></app-product-edit>

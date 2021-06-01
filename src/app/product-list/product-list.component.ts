@@ -21,6 +21,9 @@ export class ProductListComponent implements OnInit {
     price: 1000000
   },];
   status: boolean = false;
+  statusForEditForm: boolean = false;
+  productEdit: Product = {};
+  index = -1;
   constructor() {
   }
 
@@ -65,4 +68,11 @@ export class ProductListComponent implements OnInit {
     }];
   }
 
+  showEditForm(i: number) {
+    if(this.index == i){
+      this.statusForEditForm = !this.statusForEditForm;
+    }
+    this.productEdit = this.listProduct[i];
+    this.index = i;
+  }
 }
