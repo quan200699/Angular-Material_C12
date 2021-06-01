@@ -1,1 +1,22 @@
-<p>Đây là component create</p>
+<h1>Form Create Product</h1>
+<form #productForm="ngForm" (ngSubmit)="createProduct(productForm)">
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" [(ngModel)]="product.name" #name="ngModel" required minlength="6">
+    <ng-container *ngIf="!name.valid && name.touched">
+      <p *ngIf="name?.errors?.required" style="color: red">Trường này bắt buộc phải nhập</p>
+      <p *ngIf="name?.errors?.minlength" style="color: red">Trường này phải có ít nhất 6 ký tự</p>
+    </ng-container>
+  </div>
+  <div>
+    <label for="price">Price</label>
+    <input type="text" name="price" id="price" [(ngModel)]="product.price">
+  </div>
+  <div>
+    <label for="description">Description</label>
+    <input type="text" name="description" id="description" [(ngModel)]="product.description">
+  </div>
+  <div>
+    <button>Create</button>
+  </div>
+</form>
