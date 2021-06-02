@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Product} from '../model/product';
 import {NgForm} from '@angular/forms';
+import {ProductService} from '../service/product.service';
 
 @Component({
   selector: 'app-product-create',
@@ -9,15 +10,13 @@ import {NgForm} from '@angular/forms';
 })
 export class ProductCreateComponent implements OnInit {
   product: Product = {};
-  @Output()
-  productSubmit = new EventEmitter<Product>();
-  constructor() { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
   }
 
   createProduct(productForm: NgForm) {
     const value = productForm.value;
-    this.productSubmit.emit(value);
+    this.productService.createNewProduct(value);
   }
 }

@@ -1,3 +1,4 @@
+<a routerLink="/products/create">Show Create Form</a>
 <app-product-search (searchEvent)="search($event)" (keyup)="getAllProduct()"></app-product-search>
 <table>
   <tr>
@@ -15,6 +16,4 @@
     <td><button mat-raised-button color="primary" (click)="showEditForm(i)">Edit</button></td>
   </tr>
 </table>
-<button mat-raised-button (click)="changeStatus()">Show Create Form</button>
-<app-product-create *ngIf="status" (productSubmit)="addProductToList($event)"></app-product-create>
 <app-product-edit *ngIf="statusForEditForm" [product]="productEdit"></app-product-edit>

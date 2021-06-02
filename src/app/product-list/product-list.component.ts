@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Product} from '../model/product';
+import {ProductService} from '../service/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -7,27 +8,15 @@ import {Product} from '../model/product';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  listProduct: Product[] = [{
-    name: 'IPhone 12',
-    price: 3200000
-  },{
-    name: 'IPhone 11',
-    price: 1500000
-  },{
-    name: 'IPhone X',
-    price: 1000000
-  },{
-    name: 'SamSung S10',
-    price: 1000000
-  },];
-  status: boolean = false;
+  listProduct: Product[] = [];
   statusForEditForm: boolean = false;
   productEdit: Product = {};
   index = -1;
-  constructor() {
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
+    this.getAllProduct();
   }
 
   search(value: string) {
@@ -44,28 +33,8 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  changeStatus() {
-    this.status = !this.status;
-  }
-
-  addProductToList(product: Product) {
-    this.listProduct.push(product)
-  }
-
   getAllProduct(){
-   this.listProduct = [{
-      name: 'IPhone 12',
-      price: 3200000
-    },{
-      name: 'IPhone 11',
-      price: 1500000
-    },{
-      name: 'IPhone X',
-      price: 1000000
-    },{
-      name: 'SamSung S10',
-      price: 1000000
-    }];
+   this.listProduct = this.productService.getAll();
   }
 
   showEditForm(i: number) {
