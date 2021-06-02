@@ -31,6 +31,13 @@ export class ProductEditComponent implements OnInit {
   }
 
   updateProduct() {
-    const value = this.productForm.value;
+    if(this.productForm.valid){
+      const value = this.productForm.value;
+      console.log(value)
+    }
+  }
+
+  get name() {
+    return this.productForm.get('name');
   }
 }

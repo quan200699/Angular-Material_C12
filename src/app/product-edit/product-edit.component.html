@@ -3,10 +3,10 @@
   <div>
     <label for="name">Name</label>
     <input type="text" id="name" formControlName="name">
-<!--    <ng-container *ngIf="!name.valid && name.touched">-->
-<!--      <p *ngIf="name?.errors?.required" style="color: red">Trường này bắt buộc phải nhập</p>-->
-<!--      <p *ngIf="name?.errors?.minlength" style="color: red">Trường này phải có ít nhất 6 ký tự</p>-->
-<!--    </ng-container>-->
+    <ng-container *ngIf="!name.valid && name.touched">
+      <p *ngIf="name?.errors?.required" style="color: red">Trường này bắt buộc phải nhập</p>
+      <p *ngIf="name?.errors?.minlength" style="color: red">Trường này phải có ít nhất 6 ký tự</p>
+    </ng-container>
   </div>
   <div>
     <label for="price">Price</label>
