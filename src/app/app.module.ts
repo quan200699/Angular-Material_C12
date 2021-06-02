@@ -10,6 +10,7 @@ import { ProductSearchComponent } from './product-search/product-search.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatTableModule} from '@angular/material';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatTableModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],

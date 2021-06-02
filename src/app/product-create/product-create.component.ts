@@ -17,6 +17,6 @@ export class ProductCreateComponent implements OnInit {
 
   createProduct(productForm: NgForm) {
     const value = productForm.value;
-    this.productService.createNewProduct(value);
+    this.productService.createNewProduct(value).subscribe(() => alert("Thanh cong"), error => console.log(error));
   }
 }

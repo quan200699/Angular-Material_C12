@@ -1,33 +1,25 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../model/product';
+import {environment} from '../../environments/environment';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+
+const API_URL = `${environment.apiUrl}`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  listProduct: Product[] = [{
-    name: 'IPhone 12',
-    price: 3200000
-  }, {
-    name: 'IPhone 11',
-    price: 1500000
-  }, {
-    name: 'IPhone X',
-    price: 1000000
-  }, {
-    name: 'SamSung S10',
-    price: 1000000
-  }];
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
-  getAll() {
-    return this.listProduct;
+  getAll(page: number, size: number): Observable<Product[]> {
+    return this.http.get<Product[]>(API_URL + `/products?page=${page}&size=${size}`);
   }
 
-  createNewProduct(product: Product){
-    this.listProduct.push(product);
+  createNewProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(API_URL + '/products', product);
   }
 
 }

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../model/product';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-product-edit',
@@ -8,15 +9,17 @@ import {Product} from '../model/product';
   styleUrls: ['./product-edit.component.css']
 })
 export class ProductEditComponent implements OnInit {
-  @Input()
   product: Product = {};
   productForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(6)]),
     price: new FormControl(),
     description: new FormControl()
   });
-  constructor() {
-
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      const id = paramMap.get('id');
+      console.log(id)
+    })
   }
 
   ngOnInit() {

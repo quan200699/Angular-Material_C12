@@ -12,16 +12,19 @@ export class ProductListComponent implements OnInit {
   statusForEditForm: boolean = false;
   productEdit: Product = {};
   index = -1;
+  page = 0;
+  size = 10;
+  message = "";
   constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
-    this.getAllProduct();
+    this.getAllProduct(this.page, this.size);
   }
 
   search(value: string) {
     if(value == ""){
-      this.getAllProduct();
+      this.getAllProduct(this.page, this.size);
     }else {
       let products = [];
       for (let i = 0;i<this.listProduct.length;i++){
@@ -33,8 +36,12 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  getAllProduct(){
-   this.listProduct = this.productService.getAll();
+  getAllProduct(page, size){
+    this.productService.getAll(page, size).subscribe(products=>{
+      this.listProduct = products;
+    }, error => {
+      this.message = error.error;
+    });
   }
 
   showEditForm(i: number) {
@@ -43,5 +50,15 @@ export class ProductListComponent implements OnInit {
     }
     this.productEdit = this.listProduct[i];
     this.index = i;
+  }
+
+  next() {
+    this.page++;
+    this.getAllProduct(this.page, this.size);
+  }
+
+  previous() {
+    this.page--;
+    this.getAllProduct(this.page, this.size);
   }
 }
