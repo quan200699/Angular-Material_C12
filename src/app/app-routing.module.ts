@@ -1,22 +1,15 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {ProductListComponent} from './product-list/product-list.component';
-import {ProductCreateComponent} from './product-create/product-create.component';
-import {ProductEditComponent} from './product-edit/product-edit.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
 
 const routes: Routes = [
   {
     path: 'products',
-    component: ProductListComponent
+    loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
   },
   {
-    path: 'products/create',
-    component: ProductCreateComponent
-  },
-  {
-    path: 'products/edit/:id',
-    component: ProductEditComponent
+    path: '**',
+    redirectTo: 'products'
   }
 ];
 
@@ -24,4 +17,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
